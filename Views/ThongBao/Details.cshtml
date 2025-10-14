@@ -1,0 +1,25 @@
+﻿@model BloodBank.Models.ThongBao
+
+@{
+    ViewBag.Title = "Chi tiết Thông báo";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Tin Nhắn</dt>
+        <dd>@Html.DisplayFor(model => model.TinNhan)</dd>
+
+        <dt>ID Người Nhận</dt>
+        <dd>@Html.DisplayFor(model => model.IDNguoiNhanTT)</dd>
+
+        <dt>Loại Máu Cần</dt>
+        <dd>@Html.DisplayFor(model => model.ThongBaoLoaiMau)</dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.IDThongBao }) |
+    @Html.ActionLink("Quay lại danh sách", "Index")
+</p>

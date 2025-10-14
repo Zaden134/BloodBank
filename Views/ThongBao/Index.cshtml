@@ -1,0 +1,35 @@
+﻿@model IEnumerable<BloodBank.Models.ThongBao>
+
+@{
+    ViewBag.Title = "Quản lý Thông báo";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Tạo Thông báo mới", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>Mã Thông Báo</th>
+        <th>Tin Nhắn</th>
+        <th>ID Người Nhận</th>
+        <th>Loại Máu Cần</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.IDThongBao)</td>
+            <td>@Html.DisplayFor(modelItem => item.TinNhan)</td>
+            <td>@Html.DisplayFor(modelItem => item.IDNguoiNhanTT)</td>
+            <td>@Html.DisplayFor(modelItem => item.ThongBaoLoaiMau)</td>
+            <td>
+                @Html.ActionLink("Sửa", "Edit", new { id = item.IDThongBao }) |
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.IDThongBao }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = item.IDThongBao })
+            </td>
+        </tr>
+    }
+</table>

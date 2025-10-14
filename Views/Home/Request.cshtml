@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Yêu cầu máu khẩn cấp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="request-form">
+    <h2>Yêu cầu máu khẩn cấp</h2>
+    <form method="post">
+        <label>Tên bệnh nhân:</label>
+        <input type="text" name="TenBenhNhan" required />
+
+        <label>Nhóm máu cần:</label>
+        <select name="NhomMau">
+            <option>A</option>
+            <option>B</option>
+            <option>AB</option>
+            <option>O</option>
+        </select>
+
+        <label>Ghi chú:</label>
+        <textarea name="GhiChu"></textarea>
+
+        <button type="submit">Gửi yêu cầu</button>
+    </form>
+</section>

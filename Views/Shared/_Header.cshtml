@@ -1,0 +1,80 @@
+﻿<header class="bg-danger text-white py-3 shadow position-fixed top-0 start-0 w-100" style="z-index: 2000;">
+    <div class="container d-flex justify-content-between align-items-center">
+        <!-- Nút 3 gạch -->
+        <button id="menu-toggle" class="btn btn-light text-danger fw-bold me-3">
+            ☰
+        </button>
+
+        <!-- Tiêu đề -->
+        <h2 class="m-0">🩸 Blood Bank</h2>
+
+        <!-- Thanh điều hướng chính -->
+        <nav class="d-none d-md-block">
+            <a href="/Home/Index" class="text-white me-3 text-decoration-none">Trang chủ</a>
+            <a href="/HienMau/Index" class="text-white me-3 text-decoration-none">Hiến máu</a>
+            <a href="/NganHangMau/Index" class="text-white me-3 text-decoration-none">Kho máu</a>
+            <a href="/ThongBao/Index" class="text-white text-decoration-none">Liên hệ</a>
+        </nav>
+    </div>
+
+    <!-- Side Menu -->
+    <div id="side-menu"
+         class="bg-white text-dark position-fixed top-0 start-0 h-100 shadow p-4 d-none"
+         style="width:250px; z-index:2050; transition: transform 0.3s ease; transform: translateX(-100%);">
+
+        <button id="close-menu" class="btn btn-danger mb-3 w-100 fw-bold">✕ Đóng</button>
+
+        <!-- Các chức năng chính -->
+        <a href="/Home/Index" class="d-block mb-3 text-decoration-none text-dark fw-semibold">🏠 Trang chủ</a>
+        <a href="/HienMau/Index" class="d-block mb-3 text-decoration-none text-dark fw-semibold">🩸 Hiến máu</a>
+        <a href="/YeuCauMau/Index" class="d-block mb-3 text-decoration-none text-dark fw-semibold">📋 Yêu cầu máu</a>
+        <a href="/NganHangMau/Index" class="d-block mb-3 text-decoration-none text-dark fw-semibold">🏥 Ngân hàng máu</a>
+        <a href="/NguoiDung/Index" class="d-block mb-3 text-decoration-none text-dark fw-semibold">👥 Người dùng</a>
+        <a href="/ThongBao/Index" class="d-block mb-3 text-decoration-none text-dark fw-semibold">🔔 Thông báo</a>
+        <a href="/QuanTriVien/Index" class="d-block mb-4 text-decoration-none text-dark fw-semibold">⚙️ Quản trị viên</a>
+
+        <hr />
+
+        <!-- Đăng ký / Đăng nhập -->
+        <a href="/Account/Register" class="d-block mb-3 text-decoration-none text-primary fw-semibold">📝 Đăng ký</a>
+        <a href="/Account/Login" class="d-block mb-3 text-decoration-none text-primary fw-semibold">🔐 Đăng nhập</a>
+
+        <!-- Đăng xuất -->
+        <a href="/Account/Logout" class="d-block mt-4 text-decoration-none text-danger fw-semibold">🚪 Đăng xuất</a>
+    </div>
+
+    <!-- Nền mờ -->
+    <div id="overlay"
+         class="position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-50 d-none"
+         style="z-index:2040;">
+    </div>
+</header>
+
+<!-- Script -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const menuToggle = document.getElementById("menu-toggle");
+        const sideMenu = document.getElementById("side-menu");
+        const closeMenu = document.getElementById("close-menu");
+        const overlay = document.getElementById("overlay");
+
+        // Mở menu
+        menuToggle.addEventListener("click", () => {
+            sideMenu.classList.remove("d-none");
+            overlay.classList.remove("d-none");
+            sideMenu.style.transform = "translateX(0)";
+        });
+
+        // Đóng menu
+        const close = () => {
+            sideMenu.style.transform = "translateX(-100%)";
+            setTimeout(() => {
+                sideMenu.classList.add("d-none");
+                overlay.classList.add("d-none");
+            }, 300);
+        };
+
+        closeMenu.addEventListener("click", close);
+        overlay.addEventListener("click", close);
+    });
+</script>

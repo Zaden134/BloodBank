@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -8,6 +9,7 @@ namespace BloodBank.Models
 {
     public class YeuCauMau
     {
+        [Key]
         public string IDYeuCau { get; set; }
         public string IDBenhNhan { get; set; }
         public string LoaiMau { get; set; }
