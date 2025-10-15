@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -8,6 +9,7 @@ namespace BloodBank.Models
 {
     public class QuanTriVien
     {
+        [Key]
         public string IDQuanTriVien { get; set; }
         public string TenQTV { get; set; }
         public string Email { get; set; }

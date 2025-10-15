@@ -1,0 +1,30 @@
+﻿@model IEnumerable<BloodBank.Models.QuanTriVien>
+
+@{
+    ViewBag.Title = "Danh sách Quản trị viên";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>Mã Quản trị viên</th>
+        <th>Tên Quản trị viên</th>
+        <th>Email</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.IDQuanTriVien)</td>
+            <td>@Html.DisplayFor(modelItem => item.TenQTV)</td>
+            <td>@Html.DisplayFor(modelItem => item.Email)</td>
+            <td>
+                @Html.ActionLink("Sửa", "Edit", new { id = item.IDQuanTriVien }) |
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.IDQuanTriVien })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,37 @@
+﻿@model IEnumerable<BloodBank.Models.HienMau>
+
+@{
+    ViewBag.Title = "Danh sách các lần hiến máu";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Ghi nhận lần hiến máu mới", "GhiNhan", null, new { @class = "btn btn-primary" })
+</p>
+
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>Mã Hiến Máu</th>
+        <th>ID Người Hiến</th>
+        <th>Loại Máu</th>
+        <th>Ngày Hiến</th>
+        <th>Lượng Máu (ML)</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.IDMaHienMau)</td>
+            <td>@Html.DisplayFor(modelItem => item.IDNguoiHien)</td>
+            <td>@Html.DisplayFor(modelItem => item.LoaiMau)</td>
+            <td>@item.NgayHienMau.ToString("dd/MM/yyyy")</td>
+            <td>@Html.DisplayFor(modelItem => item.LuongMauHien)</td>
+            <td>
+                @Html.ActionLink("Xem Lịch Sử", "LichSu", new { idNguoiHien = item.IDNguoiHien })
+            </td>
+        </tr>
+    }
+
+</table>

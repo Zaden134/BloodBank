@@ -1,0 +1,31 @@
+﻿@model BloodBank.Models.ThongBao
+
+@{
+    ViewBag.Title = "Xóa Thông báo";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>Bạn có chắc chắn muốn xóa thông báo này không?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Mã Thông Báo</dt>
+        <dd>@Html.DisplayFor(model => model.IDThongBao)</dd>
+
+        <dt>Tin Nhắn</dt>
+        <dd>@Html.DisplayFor(model => model.TinNhan)</dd>
+
+        <dt>Người Nhận</dt>
+        <dd>@Html.DisplayFor(model => model.IDNguoiNhanTT)</dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-danger" /> |
+            @Html.ActionLink("Quay lại danh sách", "Index")
+        </div>
+    }
+</div>

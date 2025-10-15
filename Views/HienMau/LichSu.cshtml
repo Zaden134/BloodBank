@@ -1,0 +1,40 @@
+﻿@model IEnumerable<BloodBank.Models.HienMau>
+
+@{
+    ViewBag.Title = "Lịch sử hiến máu";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@if (Model.Any())
+{
+    <h3>Của người hiến có ID: @ViewBag.NguoiHienID</h3>
+    <table class="table table-striped">
+        <tr>
+            <th>Mã Hiến Máu</th>
+            <th>Loại Máu</th>
+            <th>Ngày Hiến</th>
+            <th>Lượng Máu (ML)</th>
+        </tr>
+
+        @foreach (var item in Model.OrderByDescending(x => x.NgayHienMau))
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.IDMaHienMau)</td>
+                <td>@Html.DisplayFor(modelItem => item.LoaiMau)</td>
+                <td>@item.NgayHienMau.ToString("dd/MM/yyyy")</td>
+                <td>@Html.DisplayFor(modelItem => item.LuongMauHien)</td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <div class="alert alert-warning">
+        Không tìm thấy lịch sử hiến máu nào cho người dùng có ID: <strong>@ViewBag.NguoiHienID</strong>
+    </div>
+}
+
+<p class="mt-3">
+    @Html.ActionLink("Quay lại danh sách", "Index")
+</p>

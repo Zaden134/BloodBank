@@ -1,0 +1,31 @@
+﻿@model BloodBank.Models.YeuCauMau
+
+@{
+    ViewBag.Title = "Xóa Yêu cầu máu";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>Bạn có chắc chắn muốn xóa yêu cầu này không?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Mã Yêu Cầu</dt>
+        <dd>@Html.DisplayFor(model => model.IDYeuCau)</dd>
+
+        <dt>Bệnh Nhân</dt>
+        <dd>@Html.DisplayFor(model => model.IDBenhNhan)</dd>
+
+        <dt>Loại Máu</dt>
+        <dd>@Html.DisplayFor(model => model.LoaiMau)</dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-danger" /> |
+            @Html.ActionLink("Quay lại danh sách", "Index")
+        </div>
+    }
+</div>

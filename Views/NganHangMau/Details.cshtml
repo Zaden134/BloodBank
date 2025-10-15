@@ -1,0 +1,40 @@
+﻿@model BloodBank.Models.NganHangMau
+
+@{
+    ViewBag.Title = "Chi tiết Ngân hàng máu";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Mã Ngân Hàng Máu</dt>
+        <dd>@Html.DisplayFor(model => model.IDMau)</dd>
+
+        <dt>Địa Điểm</dt>
+        <dd>@Html.DisplayFor(model => model.DiaDiem)</dd>
+    </dl>
+
+    @if (Model.DSMau != null && Model.DSMau.Any())
+    {
+        <h4>Danh sách Yêu cầu máu liên quan</h4>
+        <table class="table">
+            <tr>
+                <th>Mã Yêu Cầu</th>
+                <th>Tên Bệnh Nhân</th>
+                <th>Ngày Yêu Cầu</th>
+            </tr>
+            @foreach (var item in Model.DSMau)
+            {
+                <tr>
+                    <td>@item.IDYeuCau</td>
+                </tr>
+            }
+        </table>
+    }
+</div>
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.IDMau }) |
+    @Html.ActionLink("Quay lại danh sách", "Index")
+</p>

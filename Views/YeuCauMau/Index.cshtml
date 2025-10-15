@@ -1,0 +1,41 @@
+﻿@model IEnumerable<BloodBank.Models.YeuCauMau>
+
+@{
+    ViewBag.Title = "Quản lý Yêu cầu máu";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Tạo Yêu cầu mới", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>Mã Yêu Cầu</th>
+        <th>ID Bệnh Nhân</th>
+        <th>Loại Máu</th>
+        <th>Lượng Máu (ML)</th>
+        <th>Ngày Yêu Cầu</th>
+        <th>Trạng Thái</th>
+        <th>Ngân Hàng Máu</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.IDYeuCau)</td>
+            <td>@Html.DisplayFor(modelItem => item.IDBenhNhan)</td>
+            <td>@Html.DisplayFor(modelItem => item.LoaiMau)</td>
+            <td>@Html.DisplayFor(modelItem => item.LuongMauYeuCau)</td>
+            <td>@item.NgayYC.ToString("dd/MM/yyyy")</td>
+            <td>@Html.DisplayFor(modelItem => item.TrangThai)</td>
+            <td>@Html.DisplayFor(modelItem => item.NganHangMau.DiaDiem)</td>
+            <td>
+                @Html.ActionLink("Sửa", "Edit", new { id = item.IDYeuCau }) |
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.IDYeuCau }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = item.IDYeuCau })
+            </td>
+        </tr>
+    }
+</table>

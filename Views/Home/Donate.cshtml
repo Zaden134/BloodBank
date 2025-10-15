@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Đăng ký hiến máu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="donate-form">
+    <h2>Đăng ký hiến máu</h2>
+    <form method="post">
+        <label>Họ và tên:</label>
+        <input type="text" name="HoTen" required />
+
+        <label>Nhóm máu:</label>
+        <select name="NhomMau">
+            <option>A</option>
+            <option>B</option>
+            <option>AB</option>
+            <option>O</option>
+        </select>
+
+        <label>Số điện thoại:</label>
+        <input type="tel" name="SoDienThoai" required />
+
+        <button type="submit">Gửi đăng ký</button>
+    </form>
+</section>

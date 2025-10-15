@@ -1,33 +1,42 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Trang chủ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
+
+<section class="hero-section text-center text-black d-flex flex-column justify-content-center align-items-center" style="background: url('images/hero-bg.jpg') center/cover no-repeat; height: 100vh;">
+
+    <div class="content position-relative">
+        <h1 class="display-4 fw-bold">Hiến máu cứu người – Cho đi là còn mãi</h1>
+        <p class="lead">Chia sẻ sự sống, lan tỏa yêu thương</p>
+        <div class="btn-group mt-3">
+            <a href="#" class="btn btn-primary btn-lg">Đăng ký hiến máu</a>
+            <a href="#" class="btn btn-primary btn-lg">Xem kho máu</a>
+        </div>
+    </div>
+    <section class="text-center mb-5">
+        <h2>Tại sao nên hiến máu?</h2>
+        <p class="text-muted">Hiến máu là hành động cao cả giúp cứu sống người khác và cải thiện sức khỏe của chính bạn.</p>
     </section>
 
-    <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
+    <div class="row text-center">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 p-3 shadow-sm">
+                <h5>🩸 Cứu sống tính mạng</h5>
+                <p>Mỗi đơn vị máu có thể cứu sống tới 3 người.</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 p-3 shadow-sm">
+                <h5>💪 Cải thiện sức khỏe</h5>
+                <p>Giúp cơ thể tái tạo tế bào máu và lưu thông tốt hơn.</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 p-3 shadow-sm">
+                <h5>🤝 Lan tỏa yêu thương</h5>
+                <p>Góp phần xây dựng cộng đồng nhân ái, sẻ chia.</p>
+            </div>
+        </div>
     </div>
-</main>
+</section>
