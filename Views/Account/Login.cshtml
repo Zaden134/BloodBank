@@ -1,5 +1,4 @@
-﻿@using BloodBank.Models
-@model LoginViewModel
+﻿@model BloodBank.Models.LoginViewModel
 @{
     ViewBag.Title = "Đăng nhập";
 }
@@ -7,28 +6,37 @@
 <div class="container mt-5" style="max-width:400px;">
     <h3 class="text-center mb-4">🔐 Đăng nhập hệ thống</h3>
 
-    @if (ViewBag.Error != null)
+    @* ✅ Hiển thị lỗi chung *@
+    @if (!ViewData.ModelState.IsValid)
     {
-        <div class="alert alert-danger">@ViewBag.Error</div>
+        <div class="alert alert-danger">
+            @Html.ValidationSummary(true)
+        </div>
     }
 
-    <form method="post" action="/Account/Login">
+    @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
         <div class="form-group mb-3">
-            <label>Email</label>
-            <input type="email" name="email" class="form-control" required />
+            @Html.LabelFor(m => m.Email, "Email")
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", type = "email", required = "required" })
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
         </div>
+
         <div class="form-group mb-3">
-            <label>Mật khẩu</label>
-            <input type="password" name="password" class="form-control" required />
+            @Html.LabelFor(m => m.Password, "Mật khẩu")
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
         </div>
+
         <button type="submit" class="btn btn-danger w-100">Đăng nhập</button>
 
         <p class="text-center mt-3">
             Chưa có tài khoản? <a href="/Account/Register">Đăng ký ngay</a>
         </p>
-    </form>
+    }
 </div>
-
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
