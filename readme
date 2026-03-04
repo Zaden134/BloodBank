@@ -1,0 +1,46 @@
+# 🩸 BloodBank Management System
+
+Hệ thống quản lý và thông báo hiến máu được xây dựng nhằm hỗ trợ tổ chức các đợt hiến máu và quản lý người tham gia.
+
+---
+
+## 📌 Overview
+
+BloodBank là một ứng dụng web cho phép:
+- Quản lý thông tin người hiến máu
+- Tạo và thông báo các đợt hiến máu
+- Theo dõi trạng thái đăng ký
+
+Project được xây dựng với mục tiêu học tập và thực hành phát triển hệ thống full-stack.
+
+---
+
+## 🚀 Tech Stack
+
+- HTML5
+- CSS3
+- JavaScript
+- NodeJS (nếu có backend)
+- RESTful API
+- MySQL / SQLite
+- Git & GitHub
+
+---
+
+## ⚙️ Features
+
+- Đăng ký hiến máu
+- Tạo & quản lý đợt hiến máu
+- CRUD người dùng
+- Thông báo sự kiện hiến máu
+- Kết nối API với ứng dụng mobile
+
+---
+
+## 🛠 Installation
+
+```bash
+git clone https://github.com/Zaden134/bloodbank
+cd bloodbank
+npm install
+npm start
