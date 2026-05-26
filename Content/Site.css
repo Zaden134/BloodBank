@@ -18,3 +18,157 @@ select,
 textarea {
     max-width: 280px;
 }
+/* ---------------------- */
+/* HERO SECTION (TRANG HOME) */
+/* ---------------------- */
+
+.hero-section {
+    position: relative;
+    height: 400px;
+    background: linear-gradient(to bottom, #ffe5e5 0%, #ff4d4d 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+    /* Vùng cong đỏ ở dưới */
+    .hero-section::before {
+        content: "";
+        position: absolute;
+        bottom: -30px;
+        left: 0;
+        width: 100%;
+        height: 150px;
+        background: radial-gradient(circle at 50% 0%, #b30000 70%, #a00000 100%);
+        border-radius: 50% 50% 0 0;
+    }
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-buttons .btn-danger {
+    border-radius: 30px;
+    padding: 10px 25px;
+    font-size: 1.1rem;
+}
+
+.hero-buttons .btn-outline-danger {
+    border-radius: 30px;
+    padding: 10px 25px;
+    font-size: 1.1rem;
+}
+
+/* ---------------------- */
+/* HÌNH TRANG TRÍ (TAY + GIỌT MÁU + TIM) */
+/* ---------------------- */
+
+.decorations {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Tay */
+.hand {
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    width: 180px;
+    height: 100px;
+    background: linear-gradient(to top, #ffcc99, #ffe6cc);
+    border-radius: 100px 100px 0 0;
+    transform: rotate(-10deg);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Giọt máu */
+.blood-drop {
+    position: absolute;
+    bottom: 90px;
+    left: 17%;
+    width: 50px;
+    height: 70px;
+    background: radial-gradient(circle at 30% 30%, #ff6666, #b30000);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    transform: rotate(180deg);
+    animation: dropMove 3s infinite ease-in-out;
+}
+
+@keyframes dropMove {
+    0%, 100% {
+        transform: translateY(0) rotate(180deg);
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(180deg);
+    }
+}
+
+/* Tim */
+.heart {
+    position: absolute;
+    top: 15%;
+    right: 20%;
+    width: 60px;
+    height: 60px;
+    background-color: #ff1a1a;
+    transform: rotate(-45deg);
+    animation: heartBeat 1.5s infinite;
+}
+
+    .heart::before,
+    .heart::after {
+        content: "";
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        background-color: #ff1a1a;
+        border-radius: 50%;
+    }
+
+    .heart::before {
+        top: -30px;
+        left: 0;
+    }
+
+    .heart::after {
+        left: 30px;
+        top: 0;
+    }
+
+@keyframes heartBeat {
+    0%, 100% {
+        transform: scale(1) rotate(-45deg);
+    }
+
+    50% {
+        transform: scale(1.1) rotate(-45deg);
+    }
+}
+
+/* Đường nhịp tim */
+.heartbeat {
+    position: absolute;
+    top: 28%;
+    right: 10%;
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(to right, transparent 10%, #a00000 50%, transparent 90%);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.4;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}

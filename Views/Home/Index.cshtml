@@ -3,40 +3,57 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<!-- Hero Section -->
+<section class="hero-section text-center text-white d-flex flex-column justify-content-center align-items-center">
+    <!-- Các hình minh họa -->
+    <div class="decorations">
+        <div class="hand"></div>
+        <div class="blood-drop"></div>
+        <div class="heart"></div>
+        <div class="heartbeat"></div>
+    </div>
 
-<section class="hero-section text-center text-black d-flex flex-column justify-content-center align-items-center" style="background: url('images/hero-bg.jpg') center/cover no-repeat; height: 100vh;">
+    <!-- Nội dung chính -->
+    <div class="hero-content position-relative">
+        @if (Session["TenNguoiDung"] != null)
+        {
+            <h3 class="text-success mb-3">Xin chào, @Session["TenNguoiDung"] 👋</h3>
+        }
 
-    <div class="content position-relative">
-        <h1 class="display-4 fw-bold">Hiến máu cứu người – Cho đi là còn mãi</h1>
-        <p class="lead">Chia sẻ sự sống, lan tỏa yêu thương</p>
-        <div class="btn-group mt-3">
-            <a href="#" class="btn btn-primary btn-lg">Đăng ký hiến máu</a>
-            <a href="#" class="btn btn-primary btn-lg">Xem kho máu</a>
+        <h1 class="display-5 fw-bold mb-3 text-danger">🩸 Hiến máu cứu người – Cho đi là còn mãi</h1>
+        <p class="lead mb-4 text-dark">Chia sẻ sự sống, lan tỏa yêu thương đến cộng đồng</p>
+        <div class="hero-buttons mt-3">
+            <a href="/Account/Register" class="btn btn-danger btn-lg fw-bold me-2">Đăng ký hiến máu</a>
+            <a href="/BloodStorage/Index" class="btn btn-outline-danger btn-lg fw-bold">Xem kho máu</a>
         </div>
     </div>
+</section>
+
+<!-- Lợi ích hiến máu -->
+<main class="container my-5">
     <section class="text-center mb-5">
-        <h2>Tại sao nên hiến máu?</h2>
+        <h2 class="fw-bold text-danger">Tại sao nên hiến máu?</h2>
         <p class="text-muted">Hiến máu là hành động cao cả giúp cứu sống người khác và cải thiện sức khỏe của chính bạn.</p>
     </section>
 
     <div class="row text-center">
         <div class="col-md-4 mb-4">
-            <div class="card h-100 p-3 shadow-sm">
-                <h5>🩸 Cứu sống tính mạng</h5>
+            <div class="card h-100 p-3 shadow-sm border-danger">
+                <h5 class="text-danger">🩸 Cứu sống tính mạng</h5>
                 <p>Mỗi đơn vị máu có thể cứu sống tới 3 người.</p>
             </div>
         </div>
         <div class="col-md-4 mb-4">
-            <div class="card h-100 p-3 shadow-sm">
-                <h5>💪 Cải thiện sức khỏe</h5>
+            <div class="card h-100 p-3 shadow-sm border-danger">
+                <h5 class="text-danger">💪 Cải thiện sức khỏe</h5>
                 <p>Giúp cơ thể tái tạo tế bào máu và lưu thông tốt hơn.</p>
             </div>
         </div>
         <div class="col-md-4 mb-4">
-            <div class="card h-100 p-3 shadow-sm">
-                <h5>🤝 Lan tỏa yêu thương</h5>
+            <div class="card h-100 p-3 shadow-sm border-danger">
+                <h5 class="text-danger">🤝 Lan tỏa yêu thương</h5>
                 <p>Góp phần xây dựng cộng đồng nhân ái, sẻ chia.</p>
             </div>
         </div>
     </div>
-</section>
+</main>

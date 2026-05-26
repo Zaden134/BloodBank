@@ -1,16 +1,30 @@
 ﻿using System;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web.Mvc;
 using BloodBank.Models;
-using System.Data.Entity;
 
 namespace BloodBank.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private readonly ApplicationDbContext db = new ApplicationDbContext();
 
-        // =================== LOGIN ===================
+        // ==================== HÀM MÃ HOÁ MẬT KHẨU ====================
+        private string HashPassword(string password)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                StringBuilder builder = new StringBuilder();
+                foreach (byte b in bytes)
+                    builder.Append(b.ToString("x2"));
+                return builder.ToString();
+            }
+        }
+
+        // ==================== LOGIN ====================
         [AllowAnonymous]
         public ActionResult Login()
         {
@@ -25,31 +39,35 @@ namespace BloodBank.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            var user = db.NguoiDungs.FirstOrDefault(u => u.Email == model.Email && u.Password == model.Password);
+            string hashedPassword = HashPassword(model.Password);
+
+            var user = db.NguoiDungs.FirstOrDefault(u =>
+                u.Email == model.Email && u.Password == hashedPassword);
+
             if (user != null)
             {
+                // ✅ Lưu session thông tin người dùng
                 Session["UserEmail"] = user.Email;
                 Session["UserRole"] = user.Role;
                 Session["UserName"] = user.Ten;
                 Session["UserId"] = user.IDNguoiDung;
 
-                switch (user.Role)
-                {
-                    case "BỆNH VIỆN": return RedirectToAction("Index", "BenhVien");
-                    case "NGƯỜI HIẾN": return RedirectToAction("Index", "NguoiHien");
-                    case "NV NGÂN HÀNG MÁU": return RedirectToAction("Index", "NhanVien");
-                    default: return RedirectToAction("Index", "Home");
-                }
+                // ✅ Sau khi đăng nhập xong → quay về trang chủ
+                return RedirectToAction("Index", "Home");
             }
 
             ModelState.AddModelError("", "Email hoặc mật khẩu không đúng.");
             return View(model);
         }
 
-        // =================== REGISTER ===================
+        // ==================== REGISTER ====================
         [AllowAnonymous]
         public ActionResult Register()
         {
+            if (TempData["SuccessMessage"] != null)
+            {
+                ViewBag.SuccessMessage = TempData["SuccessMessage"].ToString();
+            }
             return View();
         }
 
@@ -61,37 +79,34 @@ namespace BloodBank.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            // Kiểm tra email trùng
             if (db.NguoiDungs.Any(u => u.Email == model.Email))
             {
                 ModelState.AddModelError("", "Email đã tồn tại trong hệ thống.");
                 return View(model);
             }
 
+            var hashedPassword = HashPassword(model.Password);
+
             var newUser = new NguoiDung
             {
                 IDNguoiDung = Guid.NewGuid().ToString(),
                 Ten = model.Ten,
                 Email = model.Email,
-                Password = model.Password, // Có thể hash nếu muốn bảo mật
+                Password = hashedPassword,
                 Role = model.Role,
                 SDT = model.SDT
             };
 
             db.NguoiDungs.Add(newUser);
-            db.SaveChanges(); // ← lưu vào database
+            db.SaveChanges();
 
-            // Tự động login
-            Session["UserEmail"] = newUser.Email;
-            Session["UserRole"] = newUser.Role;
-            Session["UserName"] = newUser.Ten;
-            Session["UserId"] = newUser.IDNguoiDung;
+            TempData["SuccessMessage"] = "🎉 Đăng ký tài khoản thành công!";
+            ModelState.Clear();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Register");
         }
 
-        // =================== LOGOUT ===================
-        [Authorize]
+        // ==================== LOGOUT ====================
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
@@ -104,7 +119,6 @@ namespace BloodBank.Controllers
         {
             if (disposing)
                 db.Dispose();
-
             base.Dispose(disposing);
         }
     }
